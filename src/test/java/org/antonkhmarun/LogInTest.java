@@ -8,6 +8,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -19,6 +22,7 @@ public class LogInTest {
     public static PassportYandexPage passportYandexPage;
     public static MailYandexPage mailYandexPage;
     public static WebDriver driver;
+    public static WebDriverWait wait;
 
     @BeforeAll
     public static void setup() {
@@ -28,8 +32,10 @@ public class LogInTest {
     @BeforeEach
     public void beforeEach() {
         driver = new ChromeDriver();
-        driver.manage().window().fullscreen();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        wait.pollingEvery(Duration.ofMillis(250));
     }
 
     @ParameterizedTest
@@ -49,8 +55,10 @@ public class LogInTest {
         passportYandexPage.inputPassword(password);
         passportYandexPage.clickLoginBtn();
 
-        // explicit waiter
+        // Interruption of the script (not explicit or implicit waiter)
         Thread.sleep(2000);
+
+        wait.until(ExpectedConditions.visibilityOf(mailYandexPage.getUserAccount()));
         
         String userName = mailYandexPage.getUserName();
 

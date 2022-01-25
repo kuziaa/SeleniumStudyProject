@@ -14,12 +14,15 @@ public class MailYandexPage {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//*[@class='user-account user-account_left-name user-account_has-ticker_yes user-account_has-accent-letter_yes count-me legouser__current-account legouser__current-account i-bem']//span[@class='user-account__name']")
+    @FindBy(css = ".user-account_left-name > .user-account__name")
     private WebElement userAccount;
 
 
     public String getUserName() {
-        String userName = userAccount.getAttribute("innerText");
-        return userName;
+        return userAccount.getAttribute("innerText");
+    }
+
+    public WebElement getUserAccount() {
+        return userAccount;
     }
 }
