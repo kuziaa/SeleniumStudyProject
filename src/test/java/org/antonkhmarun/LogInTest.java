@@ -1,5 +1,6 @@
 package org.antonkhmarun;
 
+import org.antonkhmarun.config.ConfProperties;
 import org.antonkhmarun.pages.LoginPage;
 import org.antonkhmarun.pages.MailYandexPage;
 import org.antonkhmarun.pages.PassportYandexPage;
@@ -8,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -34,7 +34,7 @@ public class LogInTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.pollingEvery(Duration.ofMillis(250));
     }
 
@@ -46,7 +46,7 @@ public class LogInTest {
         passportYandexPage = new PassportYandexPage(driver);
         mailYandexPage = new MailYandexPage(driver);
 
-        driver.get(ConfProperties.getProperty("loginpage"));
+        driver.get(ConfProperties.getProperty("loginPage"));
 
         loginPage.clickLoginBtn();
 
@@ -62,7 +62,7 @@ public class LogInTest {
         
         String userName = mailYandexPage.getUserName();
 
-        assertEquals(login, userName);
+        assertEquals(login, userName, "Correct login name is displayed");
     }
 
     @AfterEach
