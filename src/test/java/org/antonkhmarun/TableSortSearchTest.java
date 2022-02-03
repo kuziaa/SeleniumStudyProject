@@ -1,26 +1,20 @@
 package org.antonkhmarun;
 
 import org.antonkhmarun.config.ConfProperties;
-import org.antonkhmarun.pages.BootstrapDownloadProgressDemo;
 import org.antonkhmarun.pages.TableSortSearchDemo;
 import org.antonkhmarun.pojo.Employee;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TableSortSearchTest {
 
@@ -41,19 +35,24 @@ public class TableSortSearchTest {
     }
 
     @Test
-    public void downloadingTo50Percent() throws InterruptedException {
+    public void moreThenOneEmployeeByCondition() {
         tableSortSearchDemo = new TableSortSearchDemo(driver);
         driver.get(ConfProperties.getProperty("tableSortSearchDemo"));
 
         Select numOfEntries = tableSortSearchDemo.getNumOfEntriesSelect();
         numOfEntries.selectByVisibleText("10");
 
-        List<WebElement> allEmployees = tableSortSearchDemo.getEmployeesFromAllPages();
-        List<WebElement> sortedEmployees = tableSortSearchDemo.sortEmployees(allEmployees, 33, 250000);
+        List<Employee> employees = new ArrayList<>();
 
-        List<Employee> employees = tableSortSearchDemo.mapEmployees(sortedEmployees);
+        boolean isFirstPage = true;
+        do {
+            tableSortSearchDemo.clickNextBtnIfNotFirstPage(isFirstPage);
+            isFirstPage = false;
 
-        System.out.println(employees);
+            List<WebElement> filteredEmployeesFromPage = tableSortSearchDemo.getEmployeesFromPageByCondition(33, 250000);
+            employees.addAll(tableSortSearchDemo.mapEmployees(filteredEmployeesFromPage));
+        } while (tableSortSearchDemo.isNextBtnClickable());
+
         assertTrue(employees.size() > 0);
 
     }
