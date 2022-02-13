@@ -1,9 +1,9 @@
 package org.antonkhmarun;
 
 import org.antonkhmarun.config.ConfProperties;
-import org.antonkhmarun.pages.LoginPage;
-import org.antonkhmarun.pages.MailYandexPage;
-import org.antonkhmarun.pages.PassportYandexPage;
+import org.antonkhmarun.pageFactory.MailYandexLogin;
+import org.antonkhmarun.pageFactory.MailYandex;
+import org.antonkhmarun.pageFactory.MailYandexPassword;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LogInTest {
 
-    public static LoginPage loginPage;
-    public static PassportYandexPage passportYandexPage;
-    public static MailYandexPage mailYandexPage;
+    public static MailYandexLogin mailYandexLogin;
+    public static MailYandexPassword mailYandexPassword;
+    public static MailYandex mailYandex;
     public static WebDriver driver;
     public static WebDriverWait wait;
 
@@ -42,25 +42,25 @@ public class LogInTest {
     @CsvFileSource(resources = "/Login_Password.csv", numLinesToSkip = 1)
     public void loginTest(String login, String password) throws InterruptedException {
 
-        loginPage = new LoginPage(driver);
-        passportYandexPage = new PassportYandexPage(driver);
-        mailYandexPage = new MailYandexPage(driver);
+        mailYandexLogin = new MailYandexLogin(driver);
+        mailYandexPassword = new MailYandexPassword(driver);
+        mailYandex = new MailYandex(driver);
 
         driver.get(ConfProperties.getProperty("loginPage"));
 
-        loginPage.clickLoginBtn();
+        mailYandexLogin.clickLoginBtn();
 
-        passportYandexPage.inputLogin(login);
-        passportYandexPage.clickLoginBtn();
-        passportYandexPage.inputPassword(password);
-        passportYandexPage.clickLoginBtn();
+        mailYandexPassword.inputLogin(login);
+        mailYandexPassword.clickLoginBtn();
+        mailYandexPassword.inputPassword(password);
+        mailYandexPassword.clickLoginBtn();
 
         // Interruption of the script (not explicit or implicit waiter)
         Thread.sleep(2000);
 
-        wait.until(ExpectedConditions.visibilityOf(mailYandexPage.getUserAccount()));
+        wait.until(ExpectedConditions.visibilityOf(mailYandex.getUserAccount()));
         
-        String userName = mailYandexPage.getUserName();
+        String userName = mailYandex.getUserName();
 
         assertEquals(login, userName, "Correct login name is displayed");
     }

@@ -1,7 +1,7 @@
 package org.antonkhmarun;
 
 import org.antonkhmarun.config.ConfProperties;
-import org.antonkhmarun.pages.BasicSelectDropdownDemo;
+import org.antonkhmarun.pageFactory.BasicSelectDropdownDemo;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
