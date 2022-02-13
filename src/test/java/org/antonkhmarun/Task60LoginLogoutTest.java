@@ -41,8 +41,6 @@ public class Task60LoginLogoutTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/Login_Password.csv", numLinesToSkip = 2)
     public void loginLogoutTest(String login, String password) {
-        System.out.println(login);
-        System.out.println(password);
         mailYandexLogin = new MailYandexLogin(driver);
         mailYandexPassword = new MailYandexPassword(driver);
         mailYandex = new MailYandex(driver);

@@ -14,7 +14,7 @@ public class MailYandexLogin {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//*[contains(@class, 'control button2 button2_view_classic button2_size_mail-big button2_theme_mail-white button2_type_link HeadBanner-Button HeadBanner-Button-Enter with-shadow')]")
+    @FindBy(css = ".HeadBanner-Button-Enter")
     private WebElement loginBtn;
 
     public void clickLoginBtn() {
