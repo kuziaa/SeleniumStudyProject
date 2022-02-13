@@ -1,7 +1,7 @@
 package org.antonkhmarun;
 
 import org.antonkhmarun.config.ConfProperties;
-import org.antonkhmarun.pages.TableSortSearchDemo;
+import org.antonkhmarun.pageFactory.TableSortSearchDemo;
 import org.antonkhmarun.pojo.Employee;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;

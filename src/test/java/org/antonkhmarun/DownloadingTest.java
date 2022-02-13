@@ -1,7 +1,7 @@
 package org.antonkhmarun;
 
 import org.antonkhmarun.config.ConfProperties;
-import org.antonkhmarun.pages.BootstrapDownloadProgressDemo;
+import org.antonkhmarun.pageFactory.BootstrapDownloadProgressDemo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

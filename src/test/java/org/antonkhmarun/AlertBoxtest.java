@@ -1,7 +1,7 @@
 package org.antonkhmarun;
 
 import org.antonkhmarun.config.ConfProperties;
-import org.antonkhmarun.pages.JavascriptAlertBoxDemo;
+import org.antonkhmarun.pageFactory.JavascriptAlertBoxDemo;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;

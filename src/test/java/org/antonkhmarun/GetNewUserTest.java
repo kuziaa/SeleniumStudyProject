@@ -1,7 +1,7 @@
 package org.antonkhmarun;
 
 import org.antonkhmarun.config.ConfProperties;
-import org.antonkhmarun.pages.DynamicDataLoadingDemo;
+import org.antonkhmarun.pageFactory.DynamicDataLoadingDemo;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
