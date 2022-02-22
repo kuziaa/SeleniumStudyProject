@@ -17,6 +17,12 @@ public class MailYandex {
     @FindBy(css = ".user-account_left-name > .user-account__name")
     private WebElement userAccount;
 
+    @FindBy(css = ".count-me .user-pic__image")
+    private WebElement userAccountSettingsBtn;
+
+    @FindBy(css = ".legouser__menu-item_action_exit")
+    private WebElement logOutBtn;
+
 
     public String getUserName() {
         return userAccount.getAttribute("innerText");
@@ -24,5 +30,13 @@ public class MailYandex {
 
     public WebElement getUserAccount() {
         return userAccount;
+    }
+
+    public void pushUserAccountSettingsBtn() {
+        userAccountSettingsBtn.click();
+    }
+
+    public void pushLogOutBtn() {
+        logOutBtn.click();
     }
 }

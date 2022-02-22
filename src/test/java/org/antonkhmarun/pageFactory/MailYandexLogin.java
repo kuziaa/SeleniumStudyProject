@@ -20,4 +20,8 @@ public class MailYandexLogin {
     public void clickLoginBtn() {
         loginBtn.click();
     }
+
+    public WebElement getLoginBtn() {
+        return loginBtn;
+    }
 }

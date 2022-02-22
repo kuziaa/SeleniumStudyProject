@@ -34,4 +34,8 @@ public class MailYandexPassword {
     public void clickLoginBtn() {
         loginBtn.click();
     }
+
+    public WebElement getLoginBtn() {
+        return loginBtn;
+    }
 }
