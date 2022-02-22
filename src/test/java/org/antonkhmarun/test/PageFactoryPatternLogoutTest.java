@@ -34,8 +34,6 @@ public class PageFactoryPatternLogoutTest extends BaseTest {
         mailYandexPassword.clickLoginBtn();
 
         wait.until(ExpectedConditions.visibilityOf(mailYandex.getUserAccount()));
-        String userName = mailYandex.getUserName();
-        assertEquals(login, userName, "Correct login name is displayed");
 
         mailYandex.pushUserAccountSettingsBtn();
         mailYandex.pushLogOutBtn();
