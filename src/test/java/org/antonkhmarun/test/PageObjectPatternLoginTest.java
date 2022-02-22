@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +25,7 @@ public class PageObjectPatternLoginTest extends BaseTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Login_Password.csv", numLinesToSkip = 2)
-    public void loginLogoutTest(String login, String password) {
+    public void loginTest(String login, String password) throws IOException {
         System.out.println(login);
         System.out.println(password);
         mailYandexLogin = new MailYandexLogin(driver);
@@ -43,5 +44,7 @@ public class PageObjectPatternLoginTest extends BaseTest {
         wait.until(ExpectedConditions.visibilityOf(mailYandex.getUserAccount()));
         String userName = mailYandex.getUserName();
         assertEquals(login, userName, "Correct login name is displayed");
+
+        takeScreenShot(prepareFilePath("pageObjectPatternYandexMail"));
     }
 }

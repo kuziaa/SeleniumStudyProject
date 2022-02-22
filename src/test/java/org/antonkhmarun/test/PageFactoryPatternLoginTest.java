@@ -8,6 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PageFactoryPatternLoginTest extends BaseTest {
@@ -18,7 +20,7 @@ public class PageFactoryPatternLoginTest extends BaseTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Login_Password.csv", numLinesToSkip = 2)
-    public void loginLogoutTest(String login, String password) {
+    public void loginTest(String login, String password) throws IOException {
         mailYandexLogin = new MailYandexLogin(driver);
         mailYandexPassword = new MailYandexPassword(driver);
         mailYandex = new MailYandex(driver);
@@ -35,5 +37,7 @@ public class PageFactoryPatternLoginTest extends BaseTest {
         wait.until(ExpectedConditions.visibilityOf(mailYandex.getUserAccount()));
         String userName = mailYandex.getUserName();
         assertEquals(login, userName, "Correct login name is displayed");
+
+        takeScreenShot(prepareFilePath("pageFactoryPatternYandexMail"));
     }
 }
