@@ -19,7 +19,7 @@ public class PageFactoryPatternLogoutTest extends BaseTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Login_Password.csv", numLinesToSkip = 2)
-    public void loginLogoutTest(String login, String password) {
+    public void logoutTest(String login, String password) {
         mailYandexLogin = new MailYandexLogin(driver);
         mailYandexPassword = new MailYandexPassword(driver);
         mailYandex = new MailYandex(driver);
