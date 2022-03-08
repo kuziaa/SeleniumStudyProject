@@ -48,8 +48,8 @@ public class BaseTest {
         return basePath + fileName + "_" + now.getTime() + ".png";
     }
 
-    @AfterEach
-    public void tearDown() {
-        driver.close();
-    }
+//    @AfterEach
+//    public void tearDown() {
+//        driver.close();
+//    }
 }
