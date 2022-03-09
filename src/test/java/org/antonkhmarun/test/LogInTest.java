@@ -1,5 +1,7 @@
 package org.antonkhmarun.test;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.antonkhmarun.config.ConfProperties;
 import org.antonkhmarun.pageFactory.MailYandexLogin;
 import org.antonkhmarun.pageFactory.MailYandex;
@@ -17,6 +19,8 @@ public class LogInTest extends BaseTest {
     public static MailYandex mailYandex;
 
     @ParameterizedTest
+    @Step("Type {login} / {password}.")
+    @Description("Test checks possibility of login to yandex.mail")
     @CsvFileSource(resources = "/Login_Password.csv", numLinesToSkip = 1)
     public void loginTest(String login, String password) throws InterruptedException {
 
@@ -34,7 +38,7 @@ public class LogInTest extends BaseTest {
         mailYandexPassword.clickLoginBtn();
 
         // Interruption of the script (not explicit or implicit waiter)
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         wait.until(ExpectedConditions.visibilityOf(mailYandex.getUserAccount()));
         
