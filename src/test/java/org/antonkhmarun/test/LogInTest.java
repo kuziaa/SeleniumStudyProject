@@ -24,6 +24,7 @@ public class LogInTest extends BaseTest {
     @CsvFileSource(resources = "/Login_Password.csv", numLinesToSkip = 1)
     public void loginTest(String login, String password) throws InterruptedException {
 
+        assertTrue(false);
         mailYandexLogin = new MailYandexLogin(driver);
         mailYandexPassword = new MailYandexPassword(driver);
         mailYandex = new MailYandex(driver);

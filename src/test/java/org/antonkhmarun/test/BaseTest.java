@@ -4,6 +4,9 @@ import org.antonkhmarun.config.ConfProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -16,10 +19,13 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Date;
 
+@ExtendWith(TestResultLogger.class)
 public class BaseTest {
 
     public static WebDriver driver;
     public static WebDriverWait wait;
+
+
 
     @BeforeAll
     public static void setup() {
