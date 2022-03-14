@@ -18,13 +18,8 @@ public class TestResultWatcher implements TestWatcher {
     @SneakyThrows
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
-        Object test = context.getRequiredTestInstance();
-        Field field = test.getClass().getSuperclass().getDeclaredField("driver");
-        field.setAccessible(true);
-        WebDriver driver = (WebDriver) field.get(test);
         saveScreenshot(getDriver(context));
         driverInfo();
-
         closeDriver(context);
     }
 
