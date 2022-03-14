@@ -44,7 +44,5 @@ public class PageObjectPatternLoginTest extends BaseTest {
         wait.until(ExpectedConditions.visibilityOf(mailYandex.getUserAccount()));
         String userName = mailYandex.getUserName();
         assertEquals(login, userName, "Correct login name is displayed");
-
-        takeScreenShot(prepareFilePath("pageObjectPatternYandexMail"));
     }
 }

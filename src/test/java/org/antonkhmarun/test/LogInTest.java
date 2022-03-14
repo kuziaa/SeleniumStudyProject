@@ -1,5 +1,6 @@
 package org.antonkhmarun.test;
 
+import io.qameta.allure.*;
 import org.antonkhmarun.config.ConfProperties;
 import org.antonkhmarun.pageFactory.MailYandexLogin;
 import org.antonkhmarun.pageFactory.MailYandex;
@@ -18,6 +19,12 @@ public class LogInTest extends BaseTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Login_Password.csv", numLinesToSkip = 1)
+    @Step("Type {login} / {password}.")
+    @Description("Test checks possibility of login to yandex.mail")
+    @Epic(value = "Yandex")
+    @Feature(value = "Login process")
+    @Story(value = "Login name")
+    @TmsLink(value = "1111")
     public void loginTest(String login, String password) throws InterruptedException {
 
         mailYandexLogin = new MailYandexLogin(driver);
@@ -33,13 +40,14 @@ public class LogInTest extends BaseTest {
         mailYandexPassword.inputPassword(password);
         mailYandexPassword.clickLoginBtn();
 
-        // Interruption of the script (not explicit or implicit waiter)
+//         Interruption of the script (not explicit or implicit waiter)
         Thread.sleep(2000);
 
         wait.until(ExpectedConditions.visibilityOf(mailYandex.getUserAccount()));
         
         String userName = mailYandex.getUserName();
 
-        assertEquals(login, userName, "Correct login name is displayed");
+//        Specially failed for report
+        assertEquals(login + "xxx", userName, "Correct login name is displayed");
     }
 }
