@@ -47,7 +47,7 @@ public class TestResultWatcher implements TestWatcher {
     }
 
     private void closeDriver(ExtensionContext context) {
-        getDriver(context).close();
+        getDriver(context).quit();
     }
 
     @Attachment(value = "Failed test screenshot", type = "image/png")
