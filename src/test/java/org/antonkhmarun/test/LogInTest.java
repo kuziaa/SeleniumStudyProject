@@ -9,6 +9,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.net.MalformedURLException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LogInTest extends BaseTest {
@@ -25,8 +27,9 @@ public class LogInTest extends BaseTest {
     @Feature(value = "Login process")
     @Story(value = "Login name")
     @TmsLink(value = "1111")
-    public void loginTest(String login, String password) throws InterruptedException {
+    public void loginTest(String login, String password) throws InterruptedException, MalformedURLException {
 
+        setupDriver("firefox");
         mailYandexLogin = new MailYandexLogin(driver);
         mailYandexPassword = new MailYandexPassword(driver);
         mailYandex = new MailYandex(driver);
@@ -48,6 +51,6 @@ public class LogInTest extends BaseTest {
         String userName = mailYandex.getUserName();
 
 //        Specially failed for report
-        assertEquals(login + "xxx", userName, "Correct login name is displayed");
+        assertEquals(login, userName, "Correct login name is displayed");
     }
 }
