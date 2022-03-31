@@ -29,7 +29,6 @@ public class LogInTest extends BaseTest {
     @TmsLink(value = "1111")
     public void loginTest(String login, String password) throws InterruptedException, MalformedURLException {
 
-        setupDriver("firefox");
         mailYandexLogin = new MailYandexLogin(driver);
         mailYandexPassword = new MailYandexPassword(driver);
         mailYandex = new MailYandex(driver);
